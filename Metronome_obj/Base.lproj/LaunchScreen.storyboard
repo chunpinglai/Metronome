@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkk-j9-AhD">
+                                <rect key="frame" x="67" y="192" width="240" height="282"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fwv-Fm-Dhl">
+                                        <rect key="frame" x="20" y="149" width="200" height="113"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="113" id="AdE-My-IBP"/>
+                                            <constraint firstAttribute="width" constant="200" id="TmD-xH-Uyp"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="metronome_bg" translatesAutoresizingMaskIntoConstraints="NO" id="i5H-rS-CrS">
+                                        <rect key="frame" x="20" y="20" width="200" height="242"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="metronome_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="yRf-jp-BEq">
+                                        <rect key="frame" x="20" y="27" width="200" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="SiX-ec-crm"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="i5H-rS-CrS" firstAttribute="leading" secondItem="fkk-j9-AhD" secondAttribute="leading" constant="20" id="0c7-P4-W50"/>
+                                    <constraint firstItem="i5H-rS-CrS" firstAttribute="top" secondItem="fkk-j9-AhD" secondAttribute="top" constant="20" id="2Bk-LX-4tg"/>
+                                    <constraint firstAttribute="trailing" secondItem="yRf-jp-BEq" secondAttribute="trailing" constant="20" id="FS9-tR-x3f"/>
+                                    <constraint firstAttribute="bottom" secondItem="i5H-rS-CrS" secondAttribute="bottom" constant="20" id="K1Y-BH-nX8"/>
+                                    <constraint firstItem="yRf-jp-BEq" firstAttribute="top" secondItem="fkk-j9-AhD" secondAttribute="top" constant="27" id="LWO-JM-Cu3"/>
+                                    <constraint firstItem="fwv-Fm-Dhl" firstAttribute="leading" secondItem="fkk-j9-AhD" secondAttribute="leading" constant="20" id="OCo-dY-9Ve"/>
+                                    <constraint firstItem="yRf-jp-BEq" firstAttribute="leading" secondItem="fkk-j9-AhD" secondAttribute="leading" constant="20" id="cGl-bD-Loq"/>
+                                    <constraint firstItem="fwv-Fm-Dhl" firstAttribute="top" secondItem="fkk-j9-AhD" secondAttribute="top" constant="149" id="px0-yi-aLg"/>
+                                    <constraint firstAttribute="trailing" secondItem="i5H-rS-CrS" secondAttribute="trailing" constant="20" id="rca-dg-jVn"/>
+                                    <constraint firstAttribute="width" constant="240" id="vqU-Zh-gh8"/>
+                                    <constraint firstAttribute="height" constant="282" id="zej-Zq-TIL"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abby Lai" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qwo-21-whO">
+                                <rect key="frame" x="259" y="626" width="96" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Rc0-bf-HFy"/>
+                                    <constraint firstAttribute="width" constant="96" id="aoX-SD-bDh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="V 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDc-qq-rBQ">
+                                <rect key="frame" x="20" y="626" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="Cu1-xC-s1O"/>
+                                    <constraint firstAttribute="height" constant="21" id="tH1-La-qEa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.34136801958084106" green="0.97509497404098511" blue="0.91995269060134888" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Qwo-21-whO" secondAttribute="trailing" constant="20" id="Hbc-3B-W5z"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="QDc-qq-rBQ" secondAttribute="bottom" constant="20" id="SBL-H0-zNe"/>
+                            <constraint firstItem="fkk-j9-AhD" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="est-Vz-T5b"/>
+                            <constraint firstItem="fkk-j9-AhD" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="gBB-U8-ch8"/>
+                            <constraint firstItem="QDc-qq-rBQ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" id="w81-nN-CgR"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Qwo-21-whO" secondAttribute="bottom" constant="20" id="x0g-B7-lk3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="metronome_1.png" width="960" height="1800"/>
+        <image name="metronome_bg" width="300" height="480"/>
+    </resources>
+</document>
