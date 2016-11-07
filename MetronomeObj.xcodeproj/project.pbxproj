@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8C2DADF61DC8F0FD0025068B /* metonomeBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C2DADF41DC8F0FD0025068B /* metonomeBg.png */; };
-		8C2DADF71DC8F0FD0025068B /* metronomeCenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C2DADF51DC8F0FD0025068B /* metronomeCenter.png */; };
+		8C2DADBF1DC7862C0025068B /* SwingAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2DADBE1DC7862C0025068B /* SwingAnimation.m */; };
+		8C2DADC21DC78A840025068B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2DADC11DC78A840025068B /* QuartzCore.framework */; };
+		8C2DADF91DCA40580025068B /* metronomeCenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C2DADF81DCA40580025068B /* metronomeCenter.png */; };
+		8C2DADFD1DD0D23E0025068B /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C2DADFC1DD0D23E0025068B /* iTunesArtwork.png */; };
 		8C9B57831DC4793E00A0DF80 /* metronome_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C9B57821DC4793E00A0DF80 /* metronome_1.png */; };
 		8CBDE2631DC23E9900BC55C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDE2621DC23E9900BC55C6 /* main.m */; };
 		8CBDE2661DC23E9900BC55C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDE2651DC23E9900BC55C6 /* AppDelegate.m */; };
@@ -35,9 +37,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8C2DADF41DC8F0FD0025068B /* metonomeBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metonomeBg.png; sourceTree = "<group>"; };
-		8C2DADF51DC8F0FD0025068B /* metronomeCenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metronomeCenter.png; sourceTree = "<group>"; };
-		8C9B57821DC4793E00A0DF80 /* metronome_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metronome_1.png; sourceTree = "<group>"; };
+		8C2DADBD1DC7862C0025068B /* SwingAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwingAnimation.h; path = View/SwingAnimation.h; sourceTree = "<group>"; };
+		8C2DADBE1DC7862C0025068B /* SwingAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SwingAnimation.m; path = View/SwingAnimation.m; sourceTree = "<group>"; };
+		8C2DADC01DC786550025068B /* MetronomeConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetronomeConstant.h; sourceTree = "<group>"; };
+		8C2DADC11DC78A840025068B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8C2DADF81DCA40580025068B /* metronomeCenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = metronomeCenter.png; path = image/metronomeCenter.png; sourceTree = "<group>"; };
+		8C2DADFC1DD0D23E0025068B /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		8C9B57821DC4793E00A0DF80 /* metronome_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = metronome_1.png; path = image/metronome_1.png; sourceTree = "<group>"; };
 		8CBDE25E1DC23E9900BC55C6 /* MetronomeObj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetronomeObj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CBDE2621DC23E9900BC55C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8CBDE2641DC23E9900BC55C6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -65,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C2DADC21DC78A840025068B /* QuartzCore.framework in Frameworks */,
 				8CBDE2961DC240CC00BC55C6 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,6 +86,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C2DADBC1DC785F10025068B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8CBDE2671DC23E9900BC55C6 /* ViewController.h */,
+				8CBDE2681DC23E9900BC55C6 /* ViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		8CBDE2551DC23E9900BC55C6 = {
 			isa = PBXGroup;
 			children = (
@@ -103,8 +119,8 @@
 			children = (
 				8CBDE2641DC23E9900BC55C6 /* AppDelegate.h */,
 				8CBDE2651DC23E9900BC55C6 /* AppDelegate.m */,
-				8CBDE2671DC23E9900BC55C6 /* ViewController.h */,
-				8CBDE2681DC23E9900BC55C6 /* ViewController.m */,
+				8C2DADC01DC786550025068B /* MetronomeConstant.h */,
+				8C2DADBC1DC785F10025068B /* Controller */,
 				8CBDE2971DC2471C00BC55C6 /* View */,
 				8CBDE26A1DC23E9900BC55C6 /* Main.storyboard */,
 				8CBDE26D1DC23E9900BC55C6 /* Assets.xcassets */,
@@ -136,6 +152,9 @@
 		8CBDE28C1DC23F4A00BC55C6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				8C2DADFC1DD0D23E0025068B /* iTunesArtwork.png */,
+				8C2DADF81DCA40580025068B /* metronomeCenter.png */,
+				8C9B57821DC4793E00A0DF80 /* metronome_1.png */,
 				8CBDE28D1DC23F4A00BC55C6 /* a3.m4a */,
 				8CBDE28E1DC23F4A00BC55C6 /* click1.mp3 */,
 				8CBDE28F1DC23F4A00BC55C6 /* image */,
@@ -146,9 +165,6 @@
 		8CBDE28F1DC23F4A00BC55C6 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				8C2DADF41DC8F0FD0025068B /* metonomeBg.png */,
-				8C2DADF51DC8F0FD0025068B /* metronomeCenter.png */,
-				8C9B57821DC4793E00A0DF80 /* metronome_1.png */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -156,6 +172,7 @@
 		8CBDE2941DC240CC00BC55C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C2DADC11DC78A840025068B /* QuartzCore.framework */,
 				8CBDE2951DC240CC00BC55C6 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
@@ -164,6 +181,8 @@
 		8CBDE2971DC2471C00BC55C6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8C2DADBD1DC7862C0025068B /* SwingAnimation.h */,
+				8C2DADBE1DC7862C0025068B /* SwingAnimation.m */,
 				8CBDE29B1DC24ABC00BC55C6 /* MuteButton.h */,
 				8CBDE29C1DC24ABC00BC55C6 /* MuteButton.m */,
 				8CBDE2981DC2474B00BC55C6 /* PlayButton.h */,
@@ -257,13 +276,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C9B57831DC4793E00A0DF80 /* metronome_1.png in Resources */,
-				8C2DADF61DC8F0FD0025068B /* metonomeBg.png in Resources */,
 				8CBDE2711DC23E9900BC55C6 /* LaunchScreen.storyboard in Resources */,
 				8CBDE26E1DC23E9900BC55C6 /* Assets.xcassets in Resources */,
 				8CBDE2901DC23F4A00BC55C6 /* a3.m4a in Resources */,
-				8C2DADF71DC8F0FD0025068B /* metronomeCenter.png in Resources */,
+				8C2DADFD1DD0D23E0025068B /* iTunesArtwork.png in Resources */,
 				8CBDE26C1DC23E9900BC55C6 /* Main.storyboard in Resources */,
 				8CBDE2911DC23F4A00BC55C6 /* click1.mp3 in Resources */,
+				8C2DADF91DCA40580025068B /* metronomeCenter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C2DADBF1DC7862C0025068B /* SwingAnimation.m in Sources */,
 				8CBDE2691DC23E9900BC55C6 /* ViewController.m in Sources */,
 				8CBDE29D1DC24ABC00BC55C6 /* MuteButton.m in Sources */,
 				8CBDE29A1DC2474B00BC55C6 /* PlayButton.m in Sources */,

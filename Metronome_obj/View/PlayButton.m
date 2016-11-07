@@ -7,6 +7,7 @@
 //
 
 #import "PlayButton.h"
+#import "MetronomeConstant.h"
 
 @implementation PlayButton
 
@@ -24,11 +25,11 @@
 
 - (void)changeUI {
     if (_playStatus == PlayBtnStatus_Play) {
-        [self setImage:[UIImage imageNamed:@"play_triangle"] forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:PlayButton_Play_ImageName] forState:UIControlStateNormal];
         _playStatus = PlayBtnStatus_Stop;
     }
     else {
-        [self setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:PlayButton_Stop_ImageName] forState:UIControlStateNormal];
         _playStatus = PlayBtnStatus_Play;
     }
 }

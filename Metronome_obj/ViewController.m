@@ -10,9 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "PlayButton.h"
 #import "MuteButton.h"
-
-#define speed_max  280
-#define speed_min  1
+#import "MetronomeConstant.h"
+#import "SwingAnimation.h"
 
 @interface ViewController ()<UIPickerViewDelegate, UIPickerViewDataSource> {
     AVAudioPlayer *audioPlayer;
@@ -39,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgPendulum;
 @property (weak, nonatomic) IBOutlet UIView *metronomeControlView;
 @property (weak, nonatomic) IBOutlet UIView *metronomeView;
+@property (weak, nonatomic) IBOutlet UIView *pendulumView;
 @end
 
 @implementation ViewController
@@ -55,13 +55,19 @@
     [self setUpButtonFirstValue];
     
     //pandulum gesture
-//    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(dragPendulum:)];
-//    [_btnPendulum addGestureRecognizer:panGesture];
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(dragPendulum:)];
+    [_btnPendulum addGestureRecognizer:panGesture];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    if (playSoundTimer) {
+        [playSoundTimer invalidate];
+    }
+    if (audioPlayer) {
+        audioPlayer = nil;
+    }
 }
 
 //MARK:- Btn action
@@ -70,10 +76,8 @@
     if (_btnPlay.playStatus == PlayBtnStatus_Play) {
         [playSoundTimer invalidate];
         [self stopSwing];
-        _btnPendulum.hidden = FALSE;
     }
     else {
-        _btnPendulum.hidden = TRUE;
         [self startCount];
         float realTimeInterval = 2*[self getRealTimeInterval];
         [self startSwing:realTimeInterval];
@@ -106,18 +110,20 @@
 }
 
 - (IBAction)downBtnAction:(id)sender {
-    if (userTimeInterval < speed_min) {
+    if (userTimeInterval <= speed_min) {
         return;
     }
+    
     int speedResult = (int)userTimeInterval - 1;
     [self changeSpeed:speedResult];
     [self setSpeedTypeWithSpeed:speedResult];
 }
 
 - (IBAction)upBtnAction:(id)sender {
-    if (userTimeInterval > speed_max) {
+    if (userTimeInterval >= speed_max) {
         return;
     }
+    
     int speedResult = (int)userTimeInterval + 1;
     [self changeSpeed:speedResult];
     [self setSpeedTypeWithSpeed:speedResult];
@@ -152,9 +158,7 @@
 
 - (void)setUpButtonFirstValue {
     //init speed btn UI
-    NSString *speed = [NSString stringWithFormat:@"%.0f", userTimeInterval];
-    [_btnSpeed setTitle:speed forState:UIControlStateNormal];
-    [_btnSpeed setTitle:speed forState:UIControlStateHighlighted];
+    [self setBtnSpeedTitileWithTime:userTimeInterval];
     
     //init note btn UI
     NSString *note = [arrayNote firstObject];
@@ -200,8 +204,13 @@
 
 - (NSString *)getCurrentSpeedTypeValueString:(NSString *)currentSpeedType {
     int selectedIndex = [self getCurrentSpeedTypeRow:currentSpeedType];
-    
-    NSString *speedTypeInterval = [arraySpeedTypeInterval objectAtIndex:selectedIndex];
+    NSString *speedTypeInterval = @"";
+    if (selectedIndex < arraySpeedTypeInterval.count) {
+        speedTypeInterval = [arraySpeedTypeInterval objectAtIndex:selectedIndex];
+    }
+    else {
+        speedTypeInterval = [arraySpeedTypeInterval lastObject];
+    }
     NSArray *result = [speedTypeInterval componentsSeparatedByString:@"-"];
     return [result objectAtIndex:0];
 }
@@ -241,15 +250,16 @@
         }
     }
     
-    NSString *currentSpeedType = [arraySpeedType objectAtIndex:selectedIndex];
-    [_btnSpeedType setTitle:currentSpeedType forState:UIControlStateNormal];
-    [_btnSpeedType setTitle:currentSpeedType forState:UIControlStateHighlighted];
+    if (selectedIndex < arraySpeedType.count) {
+        NSString *currentSpeedType = [arraySpeedType objectAtIndex:selectedIndex];
+        [_btnSpeedType setTitle:currentSpeedType forState:UIControlStateNormal];
+        [_btnSpeedType setTitle:currentSpeedType forState:UIControlStateHighlighted];
+    }
 }
 
 - (void)changeSpeed:(int)speed {
-    userTimeInterval = (int)speed;
-    [_btnSpeed setTitle:[NSString stringWithFormat:@"%d",speed]  forState:UIControlStateNormal];
-    [_btnSpeed setTitle:[NSString stringWithFormat:@"%d",speed]  forState:UIControlStateHighlighted];
+    userTimeInterval = speed;
+    [self setBtnSpeedTitileWithTime:userTimeInterval];
     
     if (_btnPlay.playStatus == PlayBtnStatus_Play) {
         //animation
@@ -258,8 +268,9 @@
         [self startSwing:realTimeInterval];
     }
     
-    //center
-//    [_btnPendulum setCenter:CGPointMake(_btnPendulum.center.x, userTimeInterval)];
+    if (userTimeInterval >= 40) {
+        [_btnPendulum setCenter:CGPointMake(_btnPendulum.center.x, userTimeInterval)];
+    }
 }
 
 - (float)getRealTimeInterval {
@@ -275,17 +286,27 @@
 - (void)dragPendulum:(UIPanGestureRecognizer *)sender {
     if (_btnPlay.playStatus == PlayBtnStatus_Stop) {
         float currentY = [sender locationInView:_metronomeView].y;
-        if ((currentY < 60 )||(currentY > 280)) {
+        if (currentY < 60 ) {
+            userTimeInterval = 60.0;
+            [self setBtnSpeedTitileWithTime:userTimeInterval];
+            [_btnPendulum setCenter:CGPointMake(_btnPendulum.center.x, 60.0)];
             return;
         }
-        NSLog(@"currentY:%f, userTimeInterval:%f", currentY, userTimeInterval);
+        
+        if (currentY > 280) {
+            userTimeInterval = 280.0;
+            [self setBtnSpeedTitileWithTime:userTimeInterval];
+            [_btnPendulum setCenter:CGPointMake(_btnPendulum.center.x, 280.0)];
+            return;
+        }
+//        NSLog(@"currentY:%f, userTimeInterval:%f", currentY, userTimeInterval);
         [_btnPendulum setCenter:CGPointMake(_btnPendulum.center.x, currentY)];
         int add = trunc(currentY - previousPendulumY);
+        
 //        [self changeSpeed:(add + userTimeInterval)];
         //change speed
-        userTimeInterval = (int)(add + userTimeInterval);
-        [_btnSpeed setTitle:[NSString stringWithFormat:@"%.0f",userTimeInterval]  forState:UIControlStateNormal];
-        [_btnSpeed setTitle:[NSString stringWithFormat:@"%.0f",userTimeInterval]  forState:UIControlStateHighlighted];
+        userTimeInterval = add + userTimeInterval;
+        [self setBtnSpeedTitileWithTime:userTimeInterval];
         [self setSpeedTypeWithSpeed:userTimeInterval];
         
         if (_btnPlay.playStatus == PlayBtnStatus_Play) {
@@ -299,20 +320,17 @@
     }
 }
 
+- (void)setBtnSpeedTitileWithTime:(float)time {
+    [_btnSpeed setTitle:[NSString stringWithFormat:@"%.0f",time]  forState:UIControlStateNormal];
+    [_btnSpeed setTitle:[NSString stringWithFormat:@"%.0f",time]  forState:UIControlStateHighlighted];
+}
+
 - (void)startSwing:(float)time {
-    _imgPendulum.image = [UIImage imageNamed:@"metronome_1"];
-    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
-    NSArray *values = @[@0, @0.5, @0, @(-0.5), @0];
-    [animation setValues:values]; //from right, center , left
-    float x = INFINITY;
-    animation.repeatCount = x;
-    [animation setDuration:time];
-    animation.additive = true;
-    [_imgPendulum.layer addAnimation:animation forKey:@"swing"];
+    [SwingAnimation startSwing:time view:_pendulumView];
 }
 
 - (void)stopSwing {
-    [_imgPendulum.layer removeAllAnimations];
+    [SwingAnimation stopSwingWithView:_pendulumView];
 }
 
 //MARK:- PlaySound
